@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    
+    .input {
+        @apply m-0 block h-12 w-full rounded-lg bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-150 ease-in-out placeholder:text-transparent focus:ring-orange-400 focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none focus:border-orange-400 active:border-orange-400 [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem];
+    }
+
+    .input-label {
+        @apply pointer-events-none absolute left-0 top-0 origin-[0_0] p-3 text-neutral-500 transition-[opacity,_transform] duration-150 ease-in-out peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85];
+    }
+}

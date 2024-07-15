@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Nudeln",
+        "amount": "500",
+        "unit": "g"
+    },
+    {
+        "name": "Pesto",
+        "amount": "100",
+        "unit": "g"
+    },
+    {
+        "name": "Cashew Nüsse",
+        "amount": "1 Hand voll",
+        "unit": "h"
+    }
+]

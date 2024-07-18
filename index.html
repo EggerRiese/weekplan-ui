@@ -1,7 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <link href="resources/output.css" rel="stylesheet" />
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="resources/output.css" rel="stylesheet" />
+      <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> 
+    <title>Vue Ingredient List</title>
   </head>
   <body id="app" class="w-96 mx-auto px-12">
     
@@ -23,7 +27,7 @@
       </ul>
     </div>
 
-    <div>
+    <div v-if="!shoppingList">
       <form id="meal-form">
 
         <div class="sm:col-span-2 relative mt-8">
@@ -31,26 +35,22 @@
           <label for="meal-title" class="input-label">Name</label>
         </div>
 
+        <ingredient-input></ingredient-input>
+
         <div class="sm:col-span-2 relative mt-2">
-          <input type="text" name="meal-description" id="meal-description" autocomplete="text" placeholder="Description" class="peer input">
-          <label for="meal-description" class="input-label">Description</label>
+          <input type="text" name="meal-ingredient" id="meal-ingredient" autocomplete="text" placeholder="Ingredient" class="peer input rounded-b-none">
+          <label for="meal-ingredient" class="input-label">Ingredient</label>
         </div>
 
-        
-
-        <div class="sm:col-span-2 relative mt-2">
-          <input type="text" name="meal-ingredient" id="meal-ingredient" autocomplete="text" placeholder="Description" class="peer input">
-          <label for="meal-ingredient" class="input-label">Ingredient</label>
-          <div class="absolute inset-y-0 right-0 flex items-center">
-            <label for="amount" class="sr-only">Amount</label>
-            <input id="amount" type="number" name="amount" class="h-full text-right rounded-md border-0 bg-transparent bg-none py-0 pl-4 pr-9 text-gray-400 focus:ring-0 sm:text-sm">
-          </div>
-          <div class="absolute inset-y-0 right-0 flex items-center">
+        <div class="sm:col-span-2 relative">
+          <input type="text" name="meal-ingredient" id="meal-ingredient" autocomplete="text" placeholder="Amount" class="peer input border-t-0 rounded-t-none">
+          <label for="meal-ingredient-amount" class="input-label">Amount</label>
+          <div class="absolute border-l inset-y-0 right-0 flex items-center">
             <label for="unit" class="sr-only">Maßeinheit</label>
             <select id="unit" name="unit" class="h-full text-right rounded-md border-0 bg-transparent bg-none py-0 pl-4 pr-9 text-gray-400 focus:ring-0 sm:text-sm">
               <option>g</option>
               <option>ml</option>
-              <option>hand voll</option>
+              <option>hv</option>
             </select>
             <svg class="pointer-events-none absolute right-3 top-0 h-full w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />

@@ -62,6 +62,24 @@
         <input type="submit" value="save" class="w-full rounded-lg bg-orange-400 text-white h-10 py-2 mt-4 lowercase hover:bg-orange-500 hover:tracking-wider active:tracking-tighter transition-all">
       </form>
     </div>
-    <script type="text/javascript" src="resources/main.js"></script>
+    <script type="module">
+      import { createApp } from 'vue'
+      import IngredientInput from './components/IngredientInput.js'
+
+      createApp({
+        components: {
+          IngredientInput
+        },
+        data() {
+          return {
+            groceryList: [
+              { id: 0, text: 'Vegetables' },
+              { id: 1, text: 'Cheese' },
+              { id: 2, text: 'Whatever else humans are supposed to eat' }
+            ]
+          }
+        }
+      }).mount('#app')
+    </script>
   </body>
 </html>

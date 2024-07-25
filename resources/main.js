@@ -1,8 +1,21 @@
+// Function to change every id from 1 to 2 within the copied div
+function changeIds(element, inputId) {
+    // Change the id from ending with 1 to ending with 2
+    element.id = element.id.slice(0, -1) + inputId;
+    element.name = element.name?.slice(0, -1) + inputId;
+
+    // Recursively process all child elements
+    for (var i = 0; i < element.children.length; i++) {
+        changeIds(element.children[i], inputId);
+    }
+}
+
 const { createApp, ref } = Vue
 
   createApp({
     data: () => ({
-        shoppingList: null
+        shoppingList: null,
+        inputId: 1
     }),
 
     setup() {
@@ -32,6 +45,16 @@ const { createApp, ref } = Vue
                     "unit": "h"
                 }
             ];
+        },
+        createInput() {
+            const existingInput = document.getElementById('input-' + this.inputId);
+            const newInput = existingInput.cloneNode(true);
+
+            this.inputId++;
+
+            changeIds(newInput, this.inputId);
+
+            document.getElementById(existingInput.id).appendChild(newInput);
         }
     }
   }).mount('#app')

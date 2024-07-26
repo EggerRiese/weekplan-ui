@@ -68,14 +68,19 @@ document.getElementById('meal-form').addEventListener('submit', function(event) 
 
     // Convert form data to JSON
     const data = {};
+    data['title'] = formData.entries.meal-title;
     const ingredients = {};
-    formData.forEach((value, key) => {
-        if (key.includes("ingredient")) {
-            ingredients[key] = value;
-        } else {
-            data[key] = value;
-        }
-    });
+    
+    var i = 1;
+    while (formData.has('meal-ingredient-' + i)) {
+        var ingredient = {};
+        ingredient["name"] = formData.get('meal-ingredient-' + i);
+        ingredient["amount"] = formData.get('meal-ingredient-amount-' + i);
+        ingredient["unit"] = formData.get('meal-ingredient-unit' + i);
+
+        ingredients.push(ingredient);
+        i++;
+    }
 
     data["ingredients"] = ingredients;
 

@@ -67,22 +67,20 @@ document.getElementById('meal-form').addEventListener('submit', function(event) 
     const formData = new FormData(event.target);
 
     // Convert form data to JSON
-    const data = {};
-    data['title'] = formData.get('meal-title');
-    const ingredients = {};
-    
-    var i = 1;
-    while (formData.has('meal-ingredient-' + i)) {
-        var ingredient = {};
-        ingredient['name'] = formData.get('meal-ingredient-' + i);
-        ingredient['amount'] = formData.get('meal-ingredient-amount-' + i);
-        ingredient['unit'] = formData.get('meal-ingredient-unit' + i);
-
-        ingredients.push(ingredient);
+    const data = {
+        title: formData.get('meal-title'),
+        ingredients: [],
+      };
+      
+      let i = 1;
+      while (formData.has('meal-ingredient-' + i)) {
+        data.ingredients.push({
+          name: formData.get('meal-ingredient-' + i),
+          amount: formData.get('meal-ingredient-amount-' + i),
+          unit: formData.get('meal-ingredient-unit-' + i),
+        });
         i++;
-    }
-
-    data['ingredients'] = ingredients;
+      }
 
     // Send POST request with JSON data
     fetch('http://localhost:8080/meals', {

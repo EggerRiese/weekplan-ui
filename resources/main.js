@@ -73,7 +73,7 @@ const { createApp, ref } = Vue
             this.tab = switchTo;
 
             if (this.tab === 2) {
-                this.addFormListener();
+                addFormListener();
             } else if (this.tab === 3) {
                 this.fetchData();
             }

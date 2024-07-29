@@ -23,11 +23,11 @@
       <button @click="switchTab(3)">List</button>
     </div>
 
-    <div v-if="tab === '1'">
+    <div v-if="tab === 1">
       <span>Plan</span>
     </div>
 
-    <div v-else-if="tab === '2'">
+    <div v-else-if="tab === 2">
       <form id="meal-form">
 
         <div class="sm:col-span-2 relative mt-8">
@@ -65,7 +65,7 @@
     </div>
 
 
-    <div v-else-if="tab === '3'">
+    <div v-else-if="tab === 3">
       <ul>
         <li v-for="item in shoppingList">{{ item.amount + item.unit + item.name }}</li>
       </ul>

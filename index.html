@@ -18,17 +18,16 @@
     </header>
 
     <div>
-      <button @click="fetchData()">Shopping</button>
-      <button @click="createInput()">New Input</button>
+      <button @click="switchTab(1)">Plan</button>
+      <button @click="switchTab(2)">Meal</button>
+      <button @click="switchTab(3)">List</button>
     </div>
 
-    <div>
-      <ul>
-        <li v-for="item in shoppingList">{{ item.amount + item.unit + item.name }}</li>
-      </ul>
+    <div v-if="tab === '1'">
+      <span>Plan</span>
     </div>
 
-    <div v-if="!shoppingList">
+    <div v-else-if="tab === '2'">
       <form id="meal-form">
 
         <div class="sm:col-span-2 relative mt-8">
@@ -59,10 +58,23 @@
           </div>
         </div>
 
+        <button @click="createInput()">New Input</button>
 
         <input type="submit" value="save" class="w-full rounded-lg bg-orange-400 text-white h-10 py-2 mt-4 lowercase hover:bg-orange-500 hover:tracking-wider active:tracking-tighter transition-all">
       </form>
     </div>
+
+
+    <div v-else-if="tab === '3'">
+      <ul>
+        <li v-for="item in shoppingList">{{ item.amount + item.unit + item.name }}</li>
+      </ul>
+    </div>
+
+    <div v-else>
+      <h1>Something went wrong</h1>
+    </div>
+
     <script type="text/javascript" src="resources/main.js"></script>
   </body>
 </html>

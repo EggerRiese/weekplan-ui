@@ -14,6 +14,7 @@ const { createApp, ref } = Vue
 
   createApp({
     data: () => ({
+        tab: 1,
         shoppingList: null,
         inputId: 1
     }),
@@ -26,6 +27,13 @@ const { createApp, ref } = Vue
     },
 
     methods: {
+        switchTab(switchTo) {
+            this.tab = switchTo;
+
+            if (this.tab === 3) {
+                this.fetchData();
+            }
+        },
         async fetchData() {
             this.shoppingList = 
             [

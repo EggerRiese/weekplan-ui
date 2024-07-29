@@ -10,47 +10,6 @@ function changeIds(element, inputId) {
     }
 }
 
-function addFormListener() {
-    document.getElementById('meal-form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        // Capture form data
-        const formData = new FormData(event.target);
-
-        // Convert form data to JSON
-        const data = {
-            title: formData.get('meal-title'),
-            ingredients: [],
-        };
-        
-        let i = 1;
-        while (formData.has('meal-ingredient-' + i)) {
-            data.ingredients.push({
-            name: formData.get('meal-ingredient-' + i),
-            amount: formData.get('meal-ingredient-amount-' + i),
-            unit: formData.get('meal-ingredient-unit-' + i),
-            });
-            i++;
-        }
-
-        // Send POST request with JSON data
-        fetch('http://localhost:8080/meals', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-API-KEY': 'f82222f3-c6b7-4cbf-8343-2df94e10237f'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    });
-}
 
 const { createApp, ref } = Vue
 
@@ -72,9 +31,7 @@ const { createApp, ref } = Vue
         switchTab(switchTo) {
             this.tab = switchTo;
 
-            if (this.tab === 2) {
-                addFormListener();
-            } else if (this.tab === 3) {
+            if (this.tab === 3) {
                 this.fetchData();
             }
         },
@@ -110,3 +67,44 @@ const { createApp, ref } = Vue
         }
     }
   }).mount('#app')
+
+
+document.getElementById('meal-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Capture form data
+    const formData = new FormData(event.target);
+
+    // Convert form data to JSON
+    const data = {
+        title: formData.get('meal-title'),
+        ingredients: [],
+      };
+      
+      let i = 1;
+      while (formData.has('meal-ingredient-' + i)) {
+        data.ingredients.push({
+          name: formData.get('meal-ingredient-' + i),
+          amount: formData.get('meal-ingredient-amount-' + i),
+          unit: formData.get('meal-ingredient-unit-' + i),
+        });
+        i++;
+      }
+
+    // Send POST request with JSON data
+    fetch('http://localhost:8080/meals', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-API-KEY': 'f82222f3-c6b7-4cbf-8343-2df94e10237f'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});

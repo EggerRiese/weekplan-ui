@@ -11,4 +11,8 @@
     .input-label {
         @apply pointer-events-none absolute left-0 top-0 origin-[0_0] p-3 text-neutral-500 transition-[opacity,_transform] duration-150 ease-in-out peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85];
     }
+
+    .tab {
+        @apply bg-white py-2 px-3 rounded-full;
+    }
 }

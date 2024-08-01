@@ -1,30 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-white">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link href="resources/output.css" rel="stylesheet" />
-      <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> 
+    <link href="resources/output.css" rel="stylesheet" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://kit.fontawesome.com/38be68613c.js" crossorigin="anonymous"></script>
     <title>Vue Ingredient List</title>
   </head>
-  <body id="app" class="w-96 mx-auto px-12">
+  <body id="app" class="w-96 mx-auto my-4 px-12 py-4 rounded-2xl bg-gray-100">
     
     <header>
       <div class="text-center">
-        <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+      <h1 class="text-5xl font-bold tracking-tight text-gray-900">
           Wochenplan
         </h1>
       </div>
     </header>
 
-    <div>
-      <button @click="switchTab(1)">Plan</button>
-      <button @click="switchTab(2)">Meal</button>
-      <button @click="switchTab(3)">List</button>
+    <div class="flex justify-between bg-black rounded-3xl p-0.5 w-3/4 mx-auto my-4">
+      <button @click="switchTab(1)" class="tab"><i class="fa-solid fa-calendar-week"></i></button>
+      <button @click="switchTab(2)" class="tab"><i class="fa-solid fa-bowl-food"></i></button>
+      <button @click="switchTab(3)" class="tab"><i class="fa-solid fa-list-check"></i></button>
     </div>
 
     <div v-show="tab === 1">
-      <span>Plan</span>
+      <form id="week-form">
+        <div class="sm:col-span-2 relative mt-2">
+          <select name="week-number" id="week-number" autocomplete="text" class="peer input">
+            <option value="" disabled selected></option>
+            <option>Nudeln</option>
+          </select>
+          <label for="week-number" class="input-label">Week</label>
+        </div>
+
+        <div class="sm:col-span-2 relative mt-2">
+          <select name="week-monday" id="week-monday" autocomplete="text" class="peer input rounded-b-none">
+            <option value="" disabled selected></option>
+            <option>Nudeln</option>
+          </select>
+          <label for="week-monday" class="input-label">Monday</label>
+        </div>
+
+        <div class="sm:col-span-2 relative">
+          <select name="week-tuesday" id="week-tuesday" autocomplete="text" class="peer input border-t-0 rounded-none">
+            <option value="" disabled selected></option>
+            <option>Nudeln</option>
+          </select>
+          <label for="week-tuesday" class="input-label">Tuesday</label>
+        </div>
+
+        <div class="sm:col-span-2 relative">
+          <select name="week-wednesday" id="week-wednesday" autocomplete="text" class="peer input border-t-0 rounded-none">
+            <option value="" disabled selected></option>
+            <option>Nudeln</option>
+          </select>
+          <label for="week-wednesday" class="input-label">Wednesday</label>
+        </div>
+
+        <div class="sm:col-span-2 relative">
+          <select name="week-thursday" id="week-thursday" autocomplete="text" class="peer input border-t-0 rounded-none">
+            <option value="" disabled selected></option>
+            <option>Nudeln</option>
+          </select>
+          <label for="week-thursday" class="input-label">Thursday</label>
+        </div>
+
+        <div class="sm:col-span-2 relative">
+          <select name="week-friday" id="week-friday" autocomplete="text" class="peer input border-t-0 rounded-none">
+            <option value="" disabled selected></option>
+            <option>Nudeln</option>
+          </select>
+          <label for="week-friday" class="input-label">Friday</label>
+        </div>
+
+        <div class="sm:col-span-2 relative">
+          <select name="week-saturday" id="week-saturday" autocomplete="text" class="peer input border-t-0 rounded-none">
+            <option value="" disabled selected></option>
+            <option>Nudeln</option>
+          </select>
+          <label for="week-saturday" class="input-label">Saturday</label>
+        </div>
+
+        <div class="sm:col-span-2 relative">
+          <select name="week-sunday" id="week-sunday" autocomplete="text" class="peer input border-t-0 rounded-t-none">
+            <option value="" disabled selected></option>
+            <option>Nudeln</option>
+          </select>
+          <label for="week-sunday" class="input-label">Sunday</label>
+        </div>
+
+        <input type="submit" value="save" class="w-full rounded-lg bg-orange-400 text-white h-10 py-2 mt-4 lowercase hover:bg-orange-500 hover:tracking-wider active:tracking-tighter transition-all">
+
+      </form>
     </div>
 
     <div v-show="tab === 2">
@@ -45,7 +113,7 @@
             <input type="text" name="meal-ingredient-amount-1" id="meal-ingredient-amount-1" autocomplete="text" placeholder="Amount" class="peer input border-t-0 rounded-t-none">
             <label for="meal-ingredient-amount-1" class="input-label">Amount</label>
             <div class="absolute border-l inset-y-0 right-0 flex items-center">
-              <label for="meal-ingreditn-unit-1" class="sr-only">Maßeinheit</label>
+              <label for="meal-ingredient-unit-1" class="sr-only">Maßeinheit</label>
               <select id="meal-ingredient-unit-1" name="meal-ingredient-unit-1" class="h-full text-right rounded-md border-0 bg-transparent bg-none py-0 pl-4 pr-9 text-gray-400 focus:ring-0 sm:text-sm">
                 <option>g</option>
                 <option>ml</option>
@@ -58,7 +126,7 @@
           </div>
         </div>
 
-        <button @click="createInput()">New Input</button>
+        <button @click="createInput()" class="w-full mx-auto my-2"><i class="fa-solid fa-plus"></i></button>
 
         <input type="submit" value="save" class="w-full rounded-lg bg-orange-400 text-white h-10 py-2 mt-4 lowercase hover:bg-orange-500 hover:tracking-wider active:tracking-tighter transition-all">
       </form>

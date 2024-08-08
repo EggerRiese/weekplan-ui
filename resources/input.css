@@ -5,7 +5,11 @@
 @layer components {
     
     .input {
-        @apply m-0 block h-12 w-full rounded-lg bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-150 ease-in-out placeholder:text-transparent focus:ring-orange-400 focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none focus:border-orange-400 active:border-orange-400 [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem];
+        @apply m-0 block h-12 w-full rounded-lg bg-clip-padding px-3 py-4 text-base font-normal text-neutral-700 transition duration-150 ease-in-out placeholder:text-transparent focus:ring-orange-400 focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none focus:border-orange-400 active:border-orange-400 [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem];
+    }
+    
+    .input-select {
+        @apply m-0 block h-12 w-full rounded-lg bg-clip-padding px-3 pt-4 text-base font-normal text-neutral-700 transition duration-150 ease-in-out placeholder:text-transparent focus:ring-orange-400 focus:pb-[0] focus:pt-[1rem] focus:text-neutral-700 focus:outline-none focus:border-orange-400 active:border-orange-400 [&:not(:placeholder-shown)]:pb-[0] [&:not(:placeholder-shown)]:pt-[1rem];
     }
 
     .input-label {

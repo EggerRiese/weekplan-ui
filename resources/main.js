@@ -11,6 +11,17 @@ function changeIds(element, inputId) {
 }
 
 function sendPost(data, endpoint) {
+    // Debug mode
+
+    const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+
+    // Create a URL for the Blob
+    const url = URL.createObjectURL(blob);
+
+    // Open the URL in a new tab
+    window.open(url, '_blank');
+
+    return;
     // Send POST request with JSON data
     fetch('http://localhost:8080/' + endpoint, {
         method: 'POST',

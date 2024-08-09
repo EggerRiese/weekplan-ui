@@ -17,6 +17,6 @@
     }
 
     .tab {
-        @apply bg-white py-2 px-3 rounded-full;
+        @apply text-white py-2 px-3 rounded-full bg-transparent;
     }
 }

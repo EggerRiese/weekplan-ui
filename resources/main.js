@@ -44,15 +44,17 @@ const { createApp, ref } = Vue
 
 createApp({
     data: () => ({
-        tab: 2,
+        tab: 1,
         shoppingList: null,
         mealList: null,
         inputId: 1,
-        currentWeek: 0
+        currentWeek: 0,
+        currentHighlighterPosition: 0
     }),
 
     setup() {
       const message = ref('Hello vue!')
+
       return {
         message
       }
@@ -61,15 +63,46 @@ createApp({
     methods: {
         switchTab(switchTo) {
             this.tab = switchTo;
+            var tablist = document.getElementById('tablist-container');
+            var highlighter = document.getElementById('highlighter');
+
+            var middlePoint = tablist.clientWidth / 2 - highlighter.clientWidth / 2;
 
             if (this.tab === 1) {
+                highlighter.style.setProperty('--highlight-start-one', this.currentHighlighterPosition + 'px');
+                highlighter.style.setProperty('--highlight-end', '0px');
+
+                highlighter.classList.add('move-to-one');
+                highlighter.classList.remove('move-to-two');
+                highlighter.classList.remove('move-to-three');
+
+                this.currentHighlighterPosition = 0;
+            } else if (this.tab === 2) {
+                highlighter.style.setProperty('--highlight-start-two', this.currentHighlighterPosition + 'px');
+                highlighter.style.setProperty('--highlight-end-two', middlePoint + 'px');
+                
+                highlighter.classList.add('move-to-two');
+                highlighter.classList.remove('move-to-one');
+                highlighter.classList.remove('move-to-three');
+
                 this.setWeek();
                 this.fetchMeals();
+                
+                this.currentHighlighterPosition = middlePoint;
+            } else if (this.tab === 3) {
+                highlighter.style.setProperty('--highlight-start-three', this.currentHighlighterPosition + 'px');
+                highlighter.style.setProperty('--highlight-end-three', middlePoint * 2 + 'px');
+                
+                
+                highlighter.classList.add('move-to-three');
+                highlighter.classList.remove('move-to-one');
+                highlighter.classList.remove('move-to-two');
+
+                this.fetchData();
+                
+                this.currentHighlighterPosition = middlePoint * 2;
             }
 
-            if (this.tab === 3) {
-                this.fetchData();
-            }
         },
         async fetchData() {
             this.shoppingList =

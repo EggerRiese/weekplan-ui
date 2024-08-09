@@ -979,6 +979,10 @@ select {
   margin-bottom: 1rem;
 }
 
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
 .mt-2 {
   margin-top: 0.5rem;
 }
@@ -987,8 +991,8 @@ select {
   margin-top: 1rem;
 }
 
-.mt-8 {
-  margin-top: 2rem;
+.mt-6 {
+  margin-top: 1.5rem;
 }
 
 .flex {
@@ -1001,6 +1005,10 @@ select {
 
 .h-full {
   height: 100%;
+}
+
+.max-h-36 {
+  max-height: 9rem;
 }
 
 .w-11 {
@@ -1033,6 +1041,10 @@ select {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.overflow-hidden {
+  overflow: hidden;
 }
 
 .rounded-2xl {

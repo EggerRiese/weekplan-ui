@@ -67,7 +67,7 @@
   }
 
   </style>
-  <body id="app" class="w-96 mx-auto my-4 px-12 py-4 rounded-2xl bg-gray-100 h-64">
+  <body id="app" class="w-96 mx-auto my-4 px-12 py-4 rounded-2xl bg-neutral-200">
     
     <header>
       <div class="text-center">
@@ -87,8 +87,8 @@
       <div id="highlighter" class="absolute left-0 top-0 w-11 h-full bg-gray-500/50 rounded-full transition-all"></div>
     </div>
 
-    <Transition name="slide-fade" mode="out-in">
-      <div v-if="tab === 1">
+    <!--Transition name="slide-fade" mode="out-in"-->
+      <div v-show="tab === 1">
         <form id="meal-form">
 
           <div class="sm:col-span-2 relative">
@@ -119,13 +119,13 @@
             </div>
           </div>
 
-          <button @click="createInput()" class="w-full mx-auto my-2"><i class="fa-solid fa-plus"></i></button>
+          <button type="button" @click="createInput()" class="w-full mx-auto my-2"><i class="fa-solid fa-plus"></i></button>
 
           <input type="submit" value="save" class="w-full rounded-lg bg-orange-400 text-white h-10 py-2 mt-4 lowercase hover:bg-orange-500 hover:tracking-wider active:tracking-tighter transition-all">
         </form>
       </div>
 
-      <div v-else-if="tab === 2">
+      <div v-show="tab === 2">
         <form id="week-form">
           <div class="sm:col-span-2 relative">
             <input id="week-number" name="week-number" type="number" :value="currentWeek" class="peer input">
@@ -207,17 +207,17 @@
         </form>
       </div>
 
-      <div v-else-if="tab === 3">
+      <div v-show="tab === 3">
         <ul>
           <li v-for="item in shoppingList">{{ item.amount + item.unit + item.name }}</li>
         </ul>
       </div>
 
-      <div v-else="tab !== 1 && tab !== 2 && tab !== 3">
+      <div v-show="tab !== 1 && tab !== 2 && tab !== 3">
         <h1>Something went wrong</h1>
       </div>
-    </Transition>
+    <!--/Transition--->
 
-    <script type="text/javascript" src="resources/main.js"></script>
+    <script type="module" src="resources/main.js"></script>
   </body>
 </html>

@@ -1,8 +1,15 @@
+const apiKey = 'f82222f3-c6b7-4cbf-8343-2df94e10237f';
+const apiUrl = 'http://localhost:8080/';
+
 // Function to change every id from 1 to 2 within the copied div
 function changeIds(element, inputId) {
     // Change the id from ending with 1 to ending with 2
     element.id = element.id.slice(0, -1) + inputId;
     element.name = element.name?.slice(0, -1) + inputId;
+    
+    if (!element.id.includes('unit')) {
+        element.value = ''
+    }
 
     // Recursively process all child elements
     for (let i = 0; i < element.children.length; i++) {
@@ -11,29 +18,21 @@ function changeIds(element, inputId) {
 }
 
 function sendPost(data, endpoint) {
-    // Debug mode
-
-    const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
-
-    // Create a URL for the Blob
-    const url = URL.createObjectURL(blob);
-
-    // Open the URL in a new tab
-    window.open(url, '_blank');
-
-    return;
     // Send POST request with JSON data
-    fetch('http://localhost:8080/' + endpoint, {
+    fetch(apiUrl + endpoint, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-API-KEY': 'f82222f3-c6b7-4cbf-8343-2df94e10237f'
+            'X-API-KEY': apiKey
         },
         body: JSON.stringify(data)
     })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
+        .then(response => {
+            if (response.status === 200) {
+                console.log('success')
+            } else {
+                console.log(response.status)
+            }
         })
         .catch(error => {
             console.error('Error:', error);
@@ -125,7 +124,26 @@ createApp({
             ];
         },
         async fetchMeals() {
-            this.mealList =
+            fetch(apiUrl + 'meals', {
+                method: 'GET',
+                headers: {
+                    'X-API-KEY': apiKey
+                },
+            })
+                .then(response => {
+                    if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json(); // Parse JSON response
+                })
+                .then(data => {
+                    this.mealList = data;
+                    console.log(data); // Handle the data
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+            /* this.mealList =
                 [
                     {
                         "id": "1",
@@ -139,7 +157,7 @@ createApp({
                         "id": "3",
                         "name": "Mediteraner Auflauf",
                     }
-                ];
+                ]; */
         },
         createInput() {
             const existingInput = document.getElementById('input-' + this.inputId);
@@ -173,17 +191,17 @@ document.getElementById('week-form').addEventListener('submit', function(event) 
     const formData = new FormData(event.target);
 
     const data = {
-        week: formData.get('week-number'),
-        monday: formData.get('week-monday'),
-        tuesday: formData.get('week-tuesday'),
-        wednesday: formData.get('week-wednesday'),
-        thursday: formData.get('week-thursday'),
-        friday: formData.get('week-friday'),
-        saturday: formData.get('week-saturday'),
-        sunday: formData.get('week-sunday'),
+        id: formData.get('week-number'),
+        mondayMealId: formData.get('week-monday'),
+        tuesdayMealId: formData.get('week-tuesday'),
+        wednesdayMealId: formData.get('week-wednesday'),
+        thursdayMealId: formData.get('week-thursday'),
+        fridayMealId: formData.get('week-friday'),
+        saturdayMealId: formData.get('week-saturday'),
+        sundayMealId: formData.get('week-sunday'),
     };
 
-    sendPost(data, 'week');
+    sendPost(data, 'weeks');
 });
 
 document.getElementById('meal-form').addEventListener('submit', function(event) {
@@ -193,7 +211,7 @@ document.getElementById('meal-form').addEventListener('submit', function(event) 
 
     // Convert form data to JSON
     const data = {
-        title: formData.get('meal-title'),
+        name: formData.get('meal-title'),
         ingredients: [],
       };
       
@@ -207,5 +225,5 @@ document.getElementById('meal-form').addEventListener('submit', function(event) 
         i++;
       }
 
-      sendPost(data, 'meal');
+      sendPost(data, 'meals');
 });

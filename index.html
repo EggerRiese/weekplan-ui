@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-white p-4">
+<html lang="en" class="bg-white h-full p-4 overflow-hidden overscroll-contain">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,7 +69,7 @@
   }
 
   </style>
-  <body id="app" class="sm:w-[450px] sm:mx-auto w-full m-0 px-12 py-4 rounded-2xl bg-neutral-200">
+  <body id="app" class="sm:w-[450px] sm:mx-auto w-full max-h-full flex flex-col m-0 px-12 py-4 rounded-2xl bg-neutral-200">
     
     <header>
       <div class="text-center">
@@ -89,9 +89,10 @@
       <div id="highlighter" class="absolute left-0 top-0 w-11 h-full bg-gray-500/50 rounded-full transition-all"></div>
     </div>
 
-    <!--Transition name="slide-fade" mode="out-in"-->
-      <div v-show="tab === 1">
-        <form id="meal-form">
+    <div class="flex flex-col overflow-hidden">
+
+      <div v-show="tab === 1" class="flex flex-col overflow-hidden">
+        <form id="meal-form" class="overflow-auto">
 
           <div class="sm:col-span-2 relative">
             <input type="text" name="meal-title" id="meal-title" autocomplete="text" placeholder="Name" class="peer input border-b-none">
@@ -127,81 +128,84 @@
         </form>
       </div>
 
-      <div v-show="tab === 2">
-        <form id="week-form">
-          <div class="sm:col-span-2 relative">
-            <input id="week-number" name="week-number" type="number" :value="currentWeek" class="peer input">
-            <label for="week-number" class="input-label">Week</label>
-          </div>
-  
-          <div class="sm:col-span-2 relative mt-2">
-            <select name="week-monday" id="week-monday" autocomplete="text" class="peer input-select rounded-b-none">
-              <option disabled selected>Choose one..</option>
-              <option v-for="meal in mealList" :value="meal.id">
-                {{ meal.name }}
-              </option>
-            </select>
-            <label for="week-monday" class="input-label">Monday</label>
-          </div>
-  
-          <div class="sm:col-span-2 relative">
-            <select name="week-tuesday" id="week-tuesday" autocomplete="text" class="peer input-select border-t-0 rounded-none">
-              <option disabled selected>Choose one..</option>
-              <option v-for="meal in mealList" :value="meal.id">
-                {{ meal.name }}
-              </option>
-            </select>
-            <label for="week-tuesday" class="input-label">Tuesday</label>
-          </div>
-  
-          <div class="sm:col-span-2 relative">
-            <select name="week-wednesday" id="week-wednesday" autocomplete="text" class="peer input-select border-t-0 rounded-none">
-              <option disabled selected>Choose one..</option>
-              <option v-for="meal in mealList" :value="meal.id">
-                {{ meal.name }}
-              </option>
-            </select>
-            <label for="week-wednesday" class="input-label">Wednesday</label>
-          </div>
-  
-          <div class="sm:col-span-2 relative">
-            <select name="week-thursday" id="week-thursday" autocomplete="text" class="peer input-select border-t-0 rounded-none">
-              <option disabled selected>Choose one..</option>
-              <option v-for="meal in mealList" :value="meal.id">
-                {{ meal.name }}
-              </option>
-            </select>
-            <label for="week-thursday" class="input-label">Thursday</label>
-          </div>
-  
-          <div class="sm:col-span-2 relative">
-            <select name="week-friday" id="week-friday" autocomplete="text" class="peer input-select border-t-0 rounded-none">
-              <option disabled selected>Choose one..</option>
-              <option v-for="meal in mealList" :value="meal.id">
-                {{ meal.name }}
-              </option>
-            </select>
-            <label for="week-friday" class="input-label">Friday</label>
-          </div>
-  
-          <div class="sm:col-span-2 relative">
-            <select name="week-saturday" id="week-saturday" autocomplete="text" class="peer input-select border-t-0 rounded-none">
-              <option disabled selected>Choose one..</option>
-              <option v-for="meal in mealList" :value="meal.id">
-                {{ meal.name }}
-              </option>
-            </select>
-            <label for="week-saturday" class="input-label">Saturday</label>
-          </div>
-  
-          <div class="sm:col-span-2 relative">
-            <select name="week-sunday" id="week-sunday" autocomplete="text" class="peer input-select border-t-0 rounded-t-none">
-              <option disabled selected>Choose one..</option>
-              <option v-for="meal in mealList" :value="meal.id">
-                {{ meal.name }}
-              </option>
-            </select>
-            <label for="week-sunday" class="input-label">Sunday</label>
+      <div v-show="tab === 2" class="flex flex-col overflow-hidden">
+        <form id="week-form" class="overflow-auto">
+          <div>
+            <div class="sm:col-span-2 relative">
+              <input id="week-number" name="week-number" type="number" :value="currentWeek" class="peer input">
+              <label for="week-number" class="input-label">Week</label>
+            </div>
+    
+            <div class="sm:col-span-2 relative mt-2">
+              <select name="week-monday" id="week-monday" autocomplete="text" class="peer input-select rounded-b-none">
+                <option disabled selected>Choose one..</option>
+                <option v-for="meal in mealList" :value="meal.id">
+                  {{ meal.name }}
+                </option>
+              </select>
+              <label for="week-monday" class="input-label">Monday</label>
+            </div>
+    
+            <div class="sm:col-span-2 relative">
+              <select name="week-tuesday" id="week-tuesday" autocomplete="text" class="peer input-select border-t-0 rounded-none">
+                <option disabled selected>Choose one..</option>
+                <option v-for="meal in mealList" :value="meal.id">
+                  {{ meal.name }}
+                </option>
+              </select>
+              <label for="week-tuesday" class="input-label">Tuesday</label>
+            </div>
+    
+            <div class="sm:col-span-2 relative">
+              <select name="week-wednesday" id="week-wednesday" autocomplete="text" class="peer input-select border-t-0 rounded-none">
+                <option disabled selected>Choose one..</option>
+                <option v-for="meal in mealList" :value="meal.id">
+                  {{ meal.name }}
+                </option>
+              </select>
+              <label for="week-wednesday" class="input-label">Wednesday</label>
+            </div>
+    
+            <div class="sm:col-span-2 relative">
+              <select name="week-thursday" id="week-thursday" autocomplete="text" class="peer input-select border-t-0 rounded-none">
+                <option disabled selected>Choose one..</option>
+                <option v-for="meal in mealList" :value="meal.id">
+                  {{ meal.name }}
+                </option>
+              </select>
+              <label for="week-thursday" class="input-label">Thursday</label>
+            </div>
+    
+            <div class="sm:col-span-2 relative">
+              <select name="week-friday" id="week-friday" autocomplete="text" class="peer input-select border-t-0 rounded-none">
+                <option disabled selected>Choose one..</option>
+                <option v-for="meal in mealList" :value="meal.id">
+                  {{ meal.name }}
+                </option>
+              </select>
+              <label for="week-friday" class="input-label">Friday</label>
+            </div>
+    
+            <div class="sm:col-span-2 relative">
+              <select name="week-saturday" id="week-saturday" autocomplete="text" class="peer input-select border-t-0 rounded-none">
+                <option disabled selected>Choose one..</option>
+                <option v-for="meal in mealList" :value="meal.id">
+                  {{ meal.name }}
+                </option>
+              </select>
+              <label for="week-saturday" class="input-label">Saturday</label>
+            </div>
+    
+            <div class="sm:col-span-2 relative">
+              <select name="week-sunday" id="week-sunday" autocomplete="text" class="peer input-select border-t-0 rounded-t-none">
+                <option disabled selected>Choose one..</option>
+                <option v-for="meal in mealList" :value="meal.id">
+                  {{ meal.name }}
+                </option>
+              </select>
+              <label for="week-sunday" class="input-label">Sunday</label>
+            </div>
+            
           </div>
           
           <input type="submit" value="save" class="w-full rounded-lg bg-orange-400 text-white h-10 py-2 mt-4 lowercase hover:bg-orange-500 hover:tracking-wider active:tracking-tighter transition-all">
@@ -213,14 +217,13 @@
         <ul>
           <li v-for="item in shoppingList">{{ item.amount + item.unit + item.name }}</li>
         </ul>
-        <button type="button" @click="sendNotification()" class="w-full mx-auto my-2"><i class="fa-solid fa-bell"></i></button>
       </div>
 
       <div v-show="tab !== 1 && tab !== 2 && tab !== 3">
         <h1>Something went wrong</h1>
       </div>
-    <!--/Transition--->
+    </div>
 
-    <script type="module" src="resources/main.js"></script>
+    <script type="text/javascript" src="resources/main.js"></script>
   </body>
 </html>

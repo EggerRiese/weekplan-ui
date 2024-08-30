@@ -1006,6 +1006,10 @@ select {
   height: 100%;
 }
 
+.max-h-full {
+  max-height: 100%;
+}
+
 .w-11 {
   width: 2.75rem;
 }
@@ -1026,12 +1030,28 @@ select {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.flex-col {
+  flex-direction: column;
+}
+
 .items-center {
   align-items: center;
 }
 
 .justify-between {
   justify-content: space-between;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overscroll-contain {
+  overscroll-behavior: contain;
 }
 
 .rounded-2xl {

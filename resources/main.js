@@ -180,6 +180,17 @@ createApp({
 
             // Calculate the current week number
             this.currentWeek = Math.ceil((pastDaysOfYear + startOfYear.getDay() + 1) / 7);
+        },
+        sendNotification() {
+            Notification.requestPermission().then((result) => {
+                if (result === "granted") {
+                    const options = {
+                        body: "Super Duper",
+                        icon: "/resources/logo.png",
+                      };
+                    new Notification("Hello", options);
+                }
+            });
         }
     }
 }).mount('#app')

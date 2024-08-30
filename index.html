@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-white h-full p-4 overflow-hidden overscroll-contain">
+<html lang="en" style="background-image: url('./resources/noise-light.png');" class="bg-stone-500 bg- h-full p-4 overflow-hidden overscroll-contain">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,7 +79,7 @@
       </div>
     </header>
 
-    <div id="tablist-container" class="flex bg-gray-700 rounded-3xl max-w-44 p-0.5 mx-auto mt-6 mb-8 relative border-2 border-gray-700">
+    <div id="tablist-container" class="flex bg-gray-700 rounded-3xl w-44 p-0.5 mx-auto mt-6 mb-8 relative border-2 border-gray-700">
       <div id="tablist" class="z-10 flex justify-between w-full">
         <button @click="switchTab(1)" class="tab"><i class="fa-solid fa-bowl-food"></i></button>
         <button @click="switchTab(2)" class="tab"><i class="fa-solid fa-calendar-week"></i></button>
@@ -92,36 +92,38 @@
     <div class="flex flex-col overflow-hidden">
 
       <div v-show="tab === 1" class="flex flex-col overflow-hidden">
-        <form id="meal-form" class="overflow-auto">
+        <form id="meal-form" class="flex flex-col overflow-auto">
 
-          <div class="sm:col-span-2 relative">
-            <input type="text" name="meal-title" id="meal-title" autocomplete="text" placeholder="Name" class="peer input border-b-none">
-            <label for="meal-title" class="input-label">Name</label>
-          </div>
-
-          <div id="input-1">
-            <div class="sm:col-span-2 relative mt-2">
-              <input type="text" name="meal-ingredient-1" id="meal-ingredient-1" autocomplete="text" placeholder="Ingredient" class="peer input rounded-b-none">
-              <label for="meal-ingredient-1" class="input-label">Ingredient</label>
-            </div>
-
+          <div class="overflow-auto">
             <div class="sm:col-span-2 relative">
-              <input type="text" name="meal-ingredient-amount-1" id="meal-ingredient-amount-1" autocomplete="text" placeholder="Amount" class="peer input border-t-0 rounded-t-none">
-              <label for="meal-ingredient-amount-1" class="input-label">Amount</label>
-              <div class="absolute border-l inset-y-0 right-0 flex items-center">
-                <label for="meal-ingredient-unit-1" class="sr-only">Maßeinheit</label>
-                <select id="meal-ingredient-unit-1" name="meal-ingredient-unit-1" class="h-full text-right rounded-md border-0 bg-transparent bg-none py-0 pl-4 pr-9 text-gray-400 focus:ring-0 sm:text-sm">
-                  <option>g</option>
-                  <option>ml</option>
-                  <option>hv</option>
-                </select>
-                <svg class="pointer-events-none absolute right-3 top-0 h-full w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                </svg>
-              </div>
+              <input type="text" name="meal-title" id="meal-title" autocomplete="text" placeholder="Name" class="peer input border-b-none">
+              <label for="meal-title" class="input-label">Name</label>
             </div>
+  
+            <div id="input-1">
+              <div class="sm:col-span-2 relative mt-2">
+                <input type="text" name="meal-ingredient-1" id="meal-ingredient-1" autocomplete="text" placeholder="Ingredient" class="peer input rounded-b-none">
+                <label for="meal-ingredient-1" class="input-label">Ingredient</label>
+              </div>
+  
+              <div class="sm:col-span-2 relative">
+                <input type="text" name="meal-ingredient-amount-1" id="meal-ingredient-amount-1" autocomplete="text" placeholder="Amount" class="peer input border-t-0 rounded-t-none">
+                <label for="meal-ingredient-amount-1" class="input-label">Amount</label>
+                <div class="absolute border-l inset-y-0 right-0 flex items-center">
+                  <label for="meal-ingredient-unit-1" class="sr-only">Maßeinheit</label>
+                  <select id="meal-ingredient-unit-1" name="meal-ingredient-unit-1" class="h-full text-right rounded-md border-0 bg-transparent bg-none py-0 pl-4 pr-9 text-gray-400 focus:ring-0 sm:text-sm">
+                    <option>g</option>
+                    <option>ml</option>
+                    <option>hv</option>
+                  </select>
+                  <svg class="pointer-events-none absolute right-3 top-0 h-full w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+            </div>  
           </div>
-
+          
           <button type="button" @click="createInput()" class="w-full mx-auto my-2"><i class="fa-solid fa-plus"></i></button>
 
           <input type="submit" value="save" class="w-full rounded-lg bg-orange-400 text-white h-10 py-2 mt-4 lowercase hover:bg-orange-500 hover:tracking-wider active:tracking-tighter transition-all">
@@ -129,8 +131,8 @@
       </div>
 
       <div v-show="tab === 2" class="flex flex-col overflow-hidden">
-        <form id="week-form" class="overflow-auto">
-          <div>
+        <form id="week-form" class="flex flex-col overflow-auto">
+          <div class="overflow-auto">
             <div class="sm:col-span-2 relative">
               <input id="week-number" name="week-number" type="number" :value="currentWeek" class="peer input">
               <label for="week-number" class="input-label">Week</label>

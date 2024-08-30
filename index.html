@@ -217,6 +217,7 @@
         <ul>
           <li v-for="item in shoppingList">{{ item.amount + item.unit + item.name }}</li>
         </ul>
+        <button type="button" @click="sendNotification()" class="w-full mx-auto my-2"><i class="fa-solid fa-bell"></i></button>
       </div>
 
       <div v-show="tab !== 1 && tab !== 2 && tab !== 3">
